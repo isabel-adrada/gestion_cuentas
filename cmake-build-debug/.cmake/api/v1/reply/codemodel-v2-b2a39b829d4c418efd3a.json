@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.30"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "gestion_cuentas",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "gestion_cuentas::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gestion_cuentas-Debug-8f15977857a02dc3d2af.json",
+					"name" : "gestion_cuentas",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/IsabelAdrada/Library/Mobile Documents/com~apple~CloudDocs/universidad/semestre 4/programacio\u0301n orientada a objetos/c++/gestion_cuentas/cmake-build-debug",
+		"source" : "/Users/IsabelAdrada/Library/Mobile Documents/com~apple~CloudDocs/universidad/semestre 4/programacio\u0301n orientada a objetos/c++/gestion_cuentas"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
