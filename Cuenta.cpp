@@ -35,7 +35,7 @@ Cuenta::~Cuenta() {
     /**
     * Destructor de la cuenta.
     */
-    std::cout << "La cuenta con el número de cuenta " << numeroCuenta << " ha sido eliminada exitosamente" << std::endl;
+    //std::cout << "La cuenta con el número de cuenta " << numeroCuenta << " ha sido eliminada exitosamente" << std::endl;
 }
 
 void Cuenta::setNumeroCuenta(std::string numeroCuenta) {

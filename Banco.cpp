@@ -6,6 +6,15 @@
 
 #include "Banco.h"
 
+Banco::Banco() {
+    this -> cuentas = {};
+}
+
+void Banco::registrarCuenta(Cuenta cuenta) {
+    this -> cuentas.push_back(cuenta);
+}
+
+
 std::vector<Cuenta> Banco::getCuentas() {
     /**
     * Getter para retornar todas las cuentas del banco.
@@ -31,7 +40,7 @@ Cuenta Banco::getCuentaNombre(std::string nombreCompleto) {
             return cuenta;
         }
     }
-    return Cuenta(); // Retorna una cuenta con atributps por defecto si no hay coincidencias.
+    return Cuenta(); // Retorna una cuenta con atributos por defecto si no hay coincidencias.
 }
 Cuenta Banco::getCuentaNumero(std::string numeroCuenta) {
     /**

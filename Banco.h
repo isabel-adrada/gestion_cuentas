@@ -13,10 +13,11 @@
 
 class Banco {
 private:
-    Cuenta* cuenta{};       // Puntero a una cuenta específica.
     std::vector<Cuenta> cuentas; // Vector de objetos de la clase Cuenta registrados en el banco.
 
 public:
+    Banco();
+    void registrarCuenta(Cuenta cuenta);
     std::vector<Cuenta> getCuentas();
     Cuenta getCuentaNombre(std::string nombreCompleto);
     Cuenta getCuentaNumero(std::string numeroCuenta);
