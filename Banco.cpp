@@ -10,6 +10,12 @@ Banco::Banco() {
     this -> cuentas = {};
 }
 
+Banco::~Banco() {
+    /**
+    * Destructor del banco.
+    */
+}
+
 void Banco::registrarCuenta(Cuenta cuenta) {
     this -> cuentas.push_back(cuenta);
 }

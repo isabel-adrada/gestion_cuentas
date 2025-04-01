@@ -19,3 +19,10 @@
 29	3098	1743533821704918580	CMakeFiles/gestion_cuentas.dir/Cuenta.cpp.o	e211259dd52765e1
 16	3290	1743533821693067431	CMakeFiles/gestion_cuentas.dir/main.cpp.o	4c2727c99e49b4fe
 3290	3490	1743533824966143589	gestion_cuentas	60166570b2b9c32b
+18	16687	1743536075610819694	CMakeFiles/gestion_cuentas.dir/Banco.cpp.o	4648703e1610e262
+14	16966	1743536075606794652	CMakeFiles/gestion_cuentas.dir/main.cpp.o	4c2727c99e49b4fe
+36	4451	1743536138207728667	CMakeFiles/gestion_cuentas.dir/Banco.cpp.o	4648703e1610e262
+31	4884	1743536138203340374	CMakeFiles/gestion_cuentas.dir/main.cpp.o	4c2727c99e49b4fe
+56	2713	1743536260361936834	CMakeFiles/gestion_cuentas.dir/Banco.cpp.o	4648703e1610e262
+59	2728	1743536260365473531	CMakeFiles/gestion_cuentas.dir/Cuenta.cpp.o	e211259dd52765e1
+2728	2892	1743536263034393490	gestion_cuentas	60166570b2b9c32b

@@ -9,7 +9,7 @@
 
 #include <vector>
 #include <string>
-#include "cuenta.h"
+#include "Cuenta.h"
 
 class Banco {
 private:
@@ -17,6 +17,7 @@ private:
 
 public:
     Banco();
+    ~Banco();
     void registrarCuenta(Cuenta cuenta);
     std::vector<Cuenta> getCuentas();
     Cuenta getCuentaNombre(std::string nombreCompleto);
