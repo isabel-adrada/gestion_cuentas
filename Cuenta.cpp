@@ -37,15 +37,6 @@ Cuenta::~Cuenta() {
     */
 }
 
-void Cuenta::setNumeroCuenta(std::string numeroCuenta) {
-    /**
-    * Setter para establecer o actualizar el número de cuenta.
-    * Args:
-    *   std::string numeroCuenta: cadena de texto con un código numérico único que identifica la cuenta.
-    */
-    this -> numeroCuenta = numeroCuenta;
-}
-
 void Cuenta::setNombreCompleto(std::string nombreCompleto) {
     /**
     * Setter para establecer o actualizar el nombre completo del titular de la cuenta.
@@ -87,7 +78,7 @@ void Cuenta::depositar(double cantidadDeposito) {
     * Incrementa el saldo disponible en la cuenta por un monto especificado.
     */
     this -> saldo += cantidadDeposito;
-    std::cout << "Se realizón un depósito por un monto de " << cantidadDeposito << std::endl;
+    std::cout << std::endl << "Se realizón un depósito por un monto de " << cantidadDeposito << std::endl;
     std::cout << "El saldo actual es de " << saldo << std::endl;
 }
 
@@ -98,7 +89,7 @@ void Cuenta::retirar(double cantidadRetiro) {
     */
     if (cantidadRetiro <= saldo) {
         this -> saldo -= cantidadRetiro;
-        std::cout << "Se realizón un retiro por un monto de " << cantidadRetiro << std::endl;
+        std::cout << std::endl << "Se realizón un retiro por un monto de " << cantidadRetiro << std::endl;
         std::cout << "El saldo actual es de " << saldo << std::endl;
     } else {
         std::cout << "Saldo insuficiente" << std::endl;

@@ -19,7 +19,6 @@ public:
     Cuenta();
     Cuenta(std::string numeroCuenta, std::string nombreCompleto, double saldo);
     ~Cuenta();
-    void setNumeroCuenta(std::string numeroCuenta);
     void setNombreCompleto(std::string nombreCompleto);
     std::string getNumeroCuenta();
     std::string getNombreCompleto();

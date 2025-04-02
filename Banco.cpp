@@ -7,6 +7,7 @@
 #include "Banco.h"
 
 Banco::Banco() {
+    this -> nombre = "Banco Grupo 1";
     this -> cuentas = {};
 }
 
@@ -16,10 +17,21 @@ Banco::~Banco() {
     */
 }
 
-void Banco::registrarCuenta(Cuenta cuenta) {
+void Banco::registrarCuenta(Cuenta &cuenta) {
+    /**
+    * Agrega un objeto de la clase cuenta al final del vector<string> cuentas.
+    */
     this -> cuentas.push_back(cuenta);
 }
 
+std::string Banco::getNombre() {
+    /**
+    * Getter para retornar el nombre del banco.
+    * Return:
+    *   std::string: cadena de caracteres con el nombre del banco.
+    */
+    return nombre;
+};
 
 std::vector<Cuenta> Banco::getCuentas() {
     /**

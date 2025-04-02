@@ -13,12 +13,14 @@
 
 class Banco {
 private:
+    std::string nombre;
     std::vector<Cuenta> cuentas; // Vector de objetos de la clase Cuenta registrados en el banco.
 
 public:
     Banco();
     ~Banco();
-    void registrarCuenta(Cuenta cuenta);
+    void registrarCuenta(Cuenta &cuenta);
+    std::string getNombre();
     std::vector<Cuenta> getCuentas();
     Cuenta getCuentaNombre(std::string nombreCompleto);
     Cuenta getCuentaNumero(std::string numeroCuenta);
