@@ -77,7 +77,7 @@ void Cuenta::depositar(double cantidadDeposito) {
     /**
     * Incrementa el saldo disponible en la cuenta por un monto especificado.
     */
-    this -> saldo += cantidadDeposito;
+    this-> saldo += cantidadDeposito;
     std::cout << std::endl << "Se realizón un depósito por un monto de " << cantidadDeposito << std::endl;
     std::cout << "El saldo actual es de " << saldo << std::endl;
 }

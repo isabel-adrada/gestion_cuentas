@@ -17,7 +17,7 @@ Banco::~Banco() {
     */
 }
 
-void Banco::registrarCuenta(Cuenta &cuenta) {
+void Banco::registrarCuenta(Cuenta* cuenta) {
     /**
     * Agrega un objeto de la clase cuenta al final del vector<string> cuentas.
     */
@@ -33,7 +33,7 @@ std::string Banco::getNombre() {
     return nombre;
 };
 
-std::vector<Cuenta> Banco::getCuentas() {
+std::vector<Cuenta*> Banco::getCuentas() {
     /**
     * Getter para retornar todas las cuentas del banco.
     * Return:
@@ -43,7 +43,7 @@ std::vector<Cuenta> Banco::getCuentas() {
 };
 
 
-Cuenta Banco::getCuentaNombre(std::string nombreCompleto) {
+Cuenta* Banco::getCuentaNombre(std::string nombreCompleto) {
     /**
     * Busca una cuenta utilizando el nombre del titular.
     * Se recorre la lista de cuentas almacenadas en el banco y se compara el nombre de cada cuenta.
@@ -53,14 +53,14 @@ Cuenta Banco::getCuentaNombre(std::string nombreCompleto) {
     *   Una cuenta con los datos correspondientes si se encuentra una coincidencia.
     *   Si no se encuentra, se devuelve una cuenta vacía.
     */
-    for (Cuenta cuenta : cuentas) {
-        if (nombreCompleto == cuenta.getNombreCompleto()) {
-            return cuenta;
+    for (std::vector<Cuenta*>::iterator it = cuentas.begin(); it != cuentas.end(); ++it) {
+        if (nombreCompleto == (*it) -> getNombreCompleto()) {
+            return *it;
         }
     }
-    return Cuenta(); // Retorna una cuenta con atributos por defecto si no hay coincidencias.
+    return nullptr; // Retorna una cuenta con atributos por defecto si no hay coincidencias.
 }
-Cuenta Banco::getCuentaNumero(std::string numeroCuenta) {
+Cuenta* Banco::getCuentaNumero(std::string numeroCuenta) {
     /**
     * Busca una cuenta a partir del número de cuenta.
     * Se revisa la lista de cuentas y se compara el número proporcionado con los registros existentes.
@@ -70,11 +70,11 @@ Cuenta Banco::getCuentaNumero(std::string numeroCuenta) {
     *   La cuenta correspondiente si se encuentra en los registros.
     *   Si no existe, devuelve una cuenta vacía.
     */
-    for (Cuenta cuenta : cuentas) {
-        if (numeroCuenta == cuenta.getNumeroCuenta()) {
-            return cuenta;
+    for (std::vector<Cuenta*>::iterator it = cuentas.begin(); it != cuentas.end(); ++it) {
+        if (numeroCuenta == (*it)->getNumeroCuenta()) {
+            return *it;
         }
     }
-    return Cuenta(); // Retorna una cuenta con atributps por defecto si no hay coincidencias.
+    return nullptr; // Retorna una cuenta con atributps por defecto si no hay coincidencias.
 }
 
