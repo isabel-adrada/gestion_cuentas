@@ -8,6 +8,7 @@
 #include "Banco.h"
 #include "Cuenta.h"
 
+//Generación automática de los números de cuenta
 int numerosCuentas = 1000000;
 
 void mostrarMenu() {
