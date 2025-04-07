@@ -39,6 +39,8 @@ void menuOperaciones() {
     std::cout << "Seleccione una opción: ";
 }
 
+//Acciones recurrentes
+
 void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuentas) {
     int operacion;
     do {
@@ -46,7 +48,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuent
         std::cin >> operacion;
 
         switch (operacion) {
-            case 1: {
+            case 1: { //Depositar
                 double cantidadDeposito;
                 std::cout << std::endl << "Ingrese la cantidad a depositar: ";
                 std::cin >> cantidadDeposito;
@@ -54,7 +56,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuent
                 std::cout << std::endl;
                 break;
             }
-            case 2 : {
+            case 2 : { //Retirar
                 double cantidadRetiro;
                 std::cout << std::endl << "Ingrese la cantidad a retirar: ";
                 std::cin >> cantidadRetiro;
@@ -62,7 +64,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuent
                 std::cout << std::endl;
                 break;
             }
-            case 3 : {
+            case 3 : { //Actualizar nombre
                 std::string nuevoNombre;
                 std::cout << std::endl << "El banco solo permite la modificación del nombre del titular de la cuenta." << std:: endl;
                 std::cout << "Ingrese el nuevo nombre del titular de la cuenta: ";
@@ -73,7 +75,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuent
                     << " ha sido actializado." << std::endl << std::endl;
                 break;
             }
-            case 4 : {
+            case 4 : { //Eliminar cuenta
                 if (cuentaEncontrada -> getSaldo() > 0 ) {
                     std::cout << std::endl << "La cuenta tiene un saldo de "
                     << cuentaEncontrada -> getSaldo() << std::endl;
@@ -86,7 +88,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuent
                 operacion = 5;
                 break;
             }
-            case 5 : {
+            case 5 : { // Regresar
                 break;
             }
             default: {
@@ -150,7 +152,7 @@ int main() {
                 switch (opcionBuscar) {
                     case 1 : {
                         std::string numeroBuscado;
-                        std::cout << "Ingrese el número de cuenta: ";
+                        std::cout << std::endl << "Ingrese el número de cuenta: ";
                         std::cin.ignore(); // Limpiar el buffer
                         std::getline(std::cin, numeroBuscado);
                         Cuenta* cuentaEncontrada = banco -> getCuentaNumero(numeroBuscado);
@@ -166,7 +168,7 @@ int main() {
                     }
                     case 2 : {
                         std::string nombreBuscado;
-                        std::cout << "Ingrese el nombre del titular a buscar: ";
+                        std::cout << std::endl << "Ingrese el nombre del titular a buscar: ";
                         std::cin.ignore(); // Limpiar el buffer
                         std::getline(std::cin, nombreBuscado);
                         std::map<std::string, Cuenta*> coincidencias = {};
