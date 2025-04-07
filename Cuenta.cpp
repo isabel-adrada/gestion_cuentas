@@ -89,7 +89,7 @@ void Cuenta::retirar(double cantidadRetiro) {
     */
     if (cantidadRetiro <= saldo) {
         this -> saldo -= cantidadRetiro;
-        std::cout << std::endl << "Se realizón un retiro por un monto de " << cantidadRetiro << std::endl;
+        std::cout << std::endl << "Se realizó un retiro por un monto de " << cantidadRetiro << std::endl;
         std::cout << "El saldo actual es de " << saldo << std::endl;
     } else {
         std::cout << "Saldo insuficiente" << std::endl;

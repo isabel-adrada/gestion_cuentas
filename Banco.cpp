@@ -15,13 +15,18 @@ Banco::~Banco() {
     /**
     * Destructor del banco.
     */
+    for (auto cuenta : cuentas) {
+        (cuenta.second) -> ~Cuenta();
+    }
+    cuentas.clear();
+
 }
 
 void Banco::registrarCuenta(Cuenta* cuenta) {
     /**
-    * Agrega un objeto de la clase cuenta al final del vector<string> cuentas.
+    * Inserta un objeto de la clase cuenta al mapa con un key = al número de cuenta
     */
-    this -> cuentas.push_back(cuenta);
+    this -> cuentas.insert({cuenta->getNumeroCuenta(), cuenta});
 }
 
 std::string Banco::getNombre() {
@@ -33,7 +38,7 @@ std::string Banco::getNombre() {
     return nombre;
 };
 
-std::vector<Cuenta*> Banco::getCuentas() {
+std::map<std::string, Cuenta*> Banco::getCuentas() {
     /**
     * Getter para retornar todas las cuentas del banco.
     * Return:
@@ -51,11 +56,11 @@ Cuenta* Banco::getCuentaNombre(std::string nombreCompleto) {
     *   nombreCompleto: nombre completo de la persona cuya cuenta se quiere encontrar.
     * Return:
     *   Una cuenta con los datos correspondientes si se encuentra una coincidencia.
-    *   Si no se encuentra, se devuelve una cuenta vacía.
+    *   Si no se encuentra, se devuelve una nullptr.
     */
-    for (std::vector<Cuenta*>::iterator it = cuentas.begin(); it != cuentas.end(); ++it) {
-        if (nombreCompleto == (*it) -> getNombreCompleto()) {
-            return *it;
+    for (auto cuenta : cuentas) {
+        if (nombreCompleto == (cuenta.second) -> getNombreCompleto()) {
+            return cuenta.second;
         }
     }
     return nullptr; // Retorna una cuenta con atributos por defecto si no hay coincidencias.
@@ -68,11 +73,11 @@ Cuenta* Banco::getCuentaNumero(std::string numeroCuenta) {
     *   numeroCuenta: número de cuenta que se quiere buscar en la base de datos del banco.
     * Return:
     *   La cuenta correspondiente si se encuentra en los registros.
-    *   Si no existe, devuelve una cuenta vacía.
+    *   Si no existe, devuelve un nullptr.
     */
-    for (std::vector<Cuenta*>::iterator it = cuentas.begin(); it != cuentas.end(); ++it) {
-        if (numeroCuenta == (*it)->getNumeroCuenta()) {
-            return *it;
+    for (auto cuenta : cuentas) {
+        if (numeroCuenta == cuenta.first) {
+            return cuenta.second;
         }
     }
     return nullptr; // Retorna una cuenta con atributps por defecto si no hay coincidencias.
