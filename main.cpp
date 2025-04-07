@@ -106,6 +106,7 @@ void infoCuenta(Cuenta* cuenta) {
         << "Saldo: " << cuenta -> getSaldo() << std::endl;
 }
 
+
 int main() {
     Banco *banco = new Banco();
     std::map<std::string, Cuenta*>* cuentas = banco -> getCuentas();
