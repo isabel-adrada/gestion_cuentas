@@ -11,6 +11,20 @@
 //Generación automática de los números de cuenta
 int numerosCuentas = 1000000;
 
+//Verificación de input
+int verificar() {
+    int opcion;
+    std::cin >> opcion;
+    while(std::cin.fail()) {
+        std::cout << "Opcion no valida. Intente de nuevo." << std::endl;
+        std::cin.clear();
+        std::cin.ignore(256,'\n');
+        std::cout << std::endl << "Seleccione una opción: ";
+        std::cin >> opcion;
+    }
+    return opcion;
+}
+
 //Menus recurrentes
 void mostrarMenu() {
     std::cout << std::endl << "=== Gestión de Cuentas ===" << std::endl;
@@ -45,8 +59,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuent
     int operacion;
     do {
         menuOperaciones();
-        std::cin >> operacion;
-
+        operacion = verificar();
         switch (operacion) {
             case 1: { //Depositar
                 double cantidadDeposito;
@@ -106,7 +119,6 @@ void infoCuenta(Cuenta* cuenta) {
         << "Saldo: " << cuenta -> getSaldo() << std::endl;
 }
 
-
 int main() {
     Banco *banco = new Banco();
     std::map<std::string, Cuenta*>* cuentas = banco -> getCuentas();
@@ -115,7 +127,7 @@ int main() {
     std::cout << std::endl << "====== " << banco -> getNombre() << " ======" << std::endl;
     do {
         mostrarMenu();
-        std::cin >> opcion;
+        opcion = verificar();
         switch (opcion) {
         case 1: { // Agregar nueva cuenta
             std::string numeroCuenta = std::to_string(numerosCuentas);
@@ -148,7 +160,7 @@ int main() {
         case 3: { // Buscar cuenta
             int opcionBuscar;
             menuBuscar();
-            std::cin >> opcionBuscar;
+            opcionBuscar = verificar();
             do {
                 switch (opcionBuscar) {
                     case 1 : {
