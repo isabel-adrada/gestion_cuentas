@@ -21,7 +21,7 @@ public:
     ~Banco();
     void registrarCuenta(Cuenta* cuenta);
     std::string getNombre();
-    std::map<std::string, Cuenta*> getCuentas();
+    std::map<std::string, Cuenta*>* getCuentas();
     Cuenta* getCuentaNombre(std::string nombreCompleto);
     Cuenta* getCuentaNumero(std::string numeroCuenta);
 };

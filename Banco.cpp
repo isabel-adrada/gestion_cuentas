@@ -38,15 +38,15 @@ std::string Banco::getNombre() {
     return nombre;
 };
 
-std::map<std::string, Cuenta*> Banco::getCuentas() {
+std::map<std::string, Cuenta*>* Banco::getCuentas() {
     /**
     * Getter para retornar todas las cuentas del banco.
     * Return:
-    *   std::vector<Cuentas>: vector que contiene todos los objetos de tipo Cuenta del banco.
+    *   std::map<string, Cuentas*>*: pointer a mapa que contiene todos los objetos de tipo Cuenta del banco.
     */
-    return cuentas;
+    std::map<std::string, Cuenta*>* mapCuentas = &cuentas;
+    return mapCuentas;
 };
-
 
 Cuenta* Banco::getCuentaNombre(std::string nombreCompleto) {
     /**

@@ -11,6 +11,7 @@
 //Generación automática de los números de cuenta
 int numerosCuentas = 1000000;
 
+//Menus recurrentes
 void mostrarMenu() {
     std::cout << std::endl << "=== Gestión de Cuentas ===" << std::endl;
     std::cout << "1. Agregar nueva cuenta" << std::endl;
@@ -20,18 +21,25 @@ void mostrarMenu() {
     std::cout << "Seleccione una opción: ";
 }
 
+void menuBuscar() {
+    std::cout << std::endl << "=== Opción de búsqueda ===" << std::endl;
+    std::cout << "1. Número de cuenta" << std::endl;
+    std::cout << "2. Titular de la cuenta" << std::endl;
+    std::cout << "3. Regresar" << std::endl << std::endl;
+    std::cout << "Seleccione una opción:  ";
+}
+
 void menuOperaciones() {
     std::cout << "=== Operación de Cuentas ===" << std::endl;
     std::cout << "1. Depositar" << std::endl;
-    std::cout << "2. Retirar " << std::endl;
-    std::cout << "3. Modificar información de la cuenta " << std::endl;
+    std::cout << "2. Retirar" << std::endl;
+    std::cout << "3. Modificar información de la cuenta" << std::endl;
     std::cout << "4. Eliiminar cuenta " << std::endl;
-    std::cout << "5. Regresar " << std::endl << std::endl;
+    std::cout << "5. Regresar" << std::endl << std::endl;
     std::cout << "Seleccione una opción: ";
-
 }
 
-void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*> cuentas) {
+void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*>* cuentas) {
     int operacion;
     do {
         menuOperaciones();
@@ -43,6 +51,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*> cuenta
                 std::cout << std::endl << "Ingrese la cantidad a depositar: ";
                 std::cin >> cantidadDeposito;
                 cuentaEncontrada -> depositar(cantidadDeposito);
+                std::cout << std::endl;
                 break;
             }
             case 2 : {
@@ -60,7 +69,7 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*> cuenta
                 std::cin.ignore(); // Limpiar el buffer
                 std::getline(std::cin, nuevoNombre);
                 cuentaEncontrada -> setNombreCompleto(nuevoNombre);
-                std::cout << "El nombre del titular de la cuenta número " << cuentaEncontrada -> getNumeroCuenta()
+                std::cout << std::endl << "El nombre del titular de la cuenta número " << cuentaEncontrada -> getNumeroCuenta()
                     << " ha sido actializado." << std::endl << std::endl;
                 break;
             }
@@ -68,12 +77,13 @@ void operaciones(Cuenta* cuentaEncontrada, std::map<std::string, Cuenta*> cuenta
                 if (cuentaEncontrada -> getSaldo() > 0 ) {
                     std::cout << std::endl << "La cuenta tiene un saldo de "
                     << cuentaEncontrada -> getSaldo() << std::endl;
-                    std::cout << "Debe retirar la totalidad antes de proceder con la eliminación de la cuenta." << std::endl;
+                    std::cout << "Debe retirar la totalidad antes de proceder con la eliminación de la cuenta." << std::endl << std::endl;
                     break;
                 }
-                cuentas.erase(cuentaEncontrada -> getNumeroCuenta());
+                cuentas -> erase(cuentaEncontrada -> getNumeroCuenta());
                 cuentaEncontrada -> ~Cuenta();
-                std::cout << "Cuenta eliminada exitosamente." << std::endl;
+                std::cout << std::endl << "Cuenta eliminada exitosamente." << std::endl;
+                operacion = 5;
                 break;
             }
             case 5 : {
@@ -96,6 +106,8 @@ void infoCuenta(Cuenta* cuenta) {
 
 int main() {
     Banco *banco = new Banco();
+    std::map<std::string, Cuenta*>* cuentas = banco -> getCuentas();
+    std::map<std::string, Cuenta*>::iterator it;
     int opcion;
     std::cout << std::endl << "====== " << banco -> getNombre() << " ======" << std::endl;
     do {
@@ -118,73 +130,82 @@ int main() {
             std::cout << std::endl << "Cuenta creada exitosamente con el número de cuenta " << numeroCuenta << "." << std::endl;
             break;
         }
-        case 2: {
-            // Listar cuentas existentes
-            std::map<std::string, Cuenta*> cuentas = banco -> getCuentas();
-                if (cuentas.empty()) {
-                    std::cout << std::endl << "No hay cuentas registradas en el banco " << std::endl;
-                } else {
-                    std::cout << std::endl << "=== Cuentas existentes ===" << std::endl;
-                    for (auto cuenta : cuentas) {
-                        std::cout << std::endl;
-                        infoCuenta(cuenta.second);
-                    }
-                }
-            break;
-        }
-        case 3: {
-            // Buscar cuenta
-            int opcionBuscar;
-            std::cout << std::endl << "Seleccione una opción de búsqueda:  " << std::endl;
-            std::cout << "1. Número de cuenta" << std::endl;
-            std::cout << "2. Titular de la cuenta" << std::endl;
-            std::cin >> opcionBuscar;
-            if (opcionBuscar == 1) {
-                std::string numeroBuscado;
-                std::cout << "Ingrese el número de cuenta: ";
-                std::cin.ignore(); // Limpiar el buffer
-                std::getline(std::cin, numeroBuscado);
-                Cuenta* cuentaEncontrada = banco -> getCuentaNumero(numeroBuscado);
-                if (cuentaEncontrada -> getNumeroCuenta() != "") {
-                    std::cout << std::endl << "Cuenta encontrada: " << std::endl;
-                    infoCuenta(cuentaEncontrada);
+        case 2: { // Listar cuentas existentes
+            if (cuentas -> empty()) {
+                std::cout << std::endl << "No hay cuentas registradas en el banco " << std::endl;
+            } else {
+                std::cout << std::endl << "=== Cuentas existentes ===" << std::endl;
+                for (it = cuentas -> begin(); it != cuentas -> end(); ++it) {
                     std::cout << std::endl;
-                    operaciones(cuentaEncontrada, banco -> getCuentas());
-                } else {
-                    std::cout << "No se encontró ninguna cuenta con el número de cuenta proporcionado." << std::endl;
-                }
-            } else if (opcionBuscar == 2) {
-                std::string nombreBuscado;
-                std::cout << "Ingrese el nombre del titular a buscar: ";
-                std::cin.ignore(); // Limpiar el buffer
-                std::getline(std::cin, nombreBuscado);
-                std::map<std::string, Cuenta*> cuentas = banco -> getCuentas();
-                std::map<std::string, Cuenta*> coincidencias = {};
-                for (auto cuenta : cuentas) {
-                    if ((cuenta.second)->getNombreCompleto() == nombreBuscado) {
-                        coincidencias.insert({cuenta.second -> getNumeroCuenta(), cuenta.second});
-                    }
-                }
-                if (coincidencias.size() > 1) {
-                    std::cout << std::endl << "Cuentas encontradas: " << std::endl << std::endl;
-                    for (auto cuenta : coincidencias) {
-                        infoCuenta(cuenta.second);
-                        std::cout << std::endl;
-                    }
-                    std::cout << "Para realizar una operación con una de estas cuentas, realice la búsqueda por número de cuenta." << std::endl;
-                } else if (coincidencias.size() == 1) {
-                    std::cout << std::endl << "Cuenta encontrada: " << std::endl << std::endl;
-                    Cuenta* coincidencia;
-                    for (auto cuenta : coincidencias) {
-                        coincidencia = cuenta.second;
-                        infoCuenta(coincidencia);
-                    }
-                    std::cout << std::endl;
-                    operaciones(coincidencia, banco -> getCuentas());
-                } else {
-                    std::cout << "No se encontró ninguna cuenta con el número de cuenta proporcionado." << std::endl;
+                    infoCuenta(it -> second);
                 }
             }
+            break;
+        }
+        case 3: { // Buscar cuenta
+            int opcionBuscar;
+            menuBuscar();
+            std::cin >> opcionBuscar;
+            do {
+                switch (opcionBuscar) {
+                    case 1 : {
+                        std::string numeroBuscado;
+                        std::cout << "Ingrese el número de cuenta: ";
+                        std::cin.ignore(); // Limpiar el buffer
+                        std::getline(std::cin, numeroBuscado);
+                        Cuenta* cuentaEncontrada = banco -> getCuentaNumero(numeroBuscado);
+                        if (cuentaEncontrada != nullptr) {
+                            std::cout << std::endl << "Cuenta encontrada: " << std::endl;
+                            infoCuenta(cuentaEncontrada);
+                            std::cout << std::endl;
+                            operaciones(cuentaEncontrada, cuentas);
+                        } else {
+                            std::cout << "No se encontró ninguna cuenta con el número de cuenta proporcionado." << std::endl;
+                        }
+                        break;
+                    }
+                    case 2 : {
+                        std::string nombreBuscado;
+                        std::cout << "Ingrese el nombre del titular a buscar: ";
+                        std::cin.ignore(); // Limpiar el buffer
+                        std::getline(std::cin, nombreBuscado);
+                        std::map<std::string, Cuenta*> coincidencias = {};
+                        for (it = cuentas -> begin(); it != cuentas -> end(); ++it) {
+                            if ((it -> second)->getNombreCompleto() == nombreBuscado) {
+                                coincidencias.insert({it -> second -> getNumeroCuenta(), it -> second});
+                            }
+                        }
+                        if (coincidencias.size() > 1) {
+                            std::cout << std::endl << "Cuentas encontradas: " << std::endl << std::endl;
+                            for (it = cuentas -> begin(); it != cuentas -> end(); ++it) {
+                                infoCuenta(it -> second);
+                                std::cout << std::endl;
+                            }
+                            std::cout << "Para realizar una operación con una de estas cuentas, realice la búsqueda por número de cuenta." << std::endl;
+                        } else if (coincidencias.size() == 1) {
+                            std::cout << std::endl << "Cuenta encontrada: " << std::endl << std::endl;
+                            Cuenta* coincidencia;
+                            for (it = cuentas -> begin(); it != cuentas -> end(); ++it) {
+                            coincidencia = it -> second;
+                                infoCuenta(coincidencia);
+                            }
+                            std::cout << std::endl;
+                            operaciones(coincidencia, cuentas);
+                        } else {
+                            std::cout << "No se encontró ninguna cuenta con el número de cuenta proporcionado." << std::endl;
+                        }
+                        break;
+                    }
+                    case 3 : {
+                        break;
+                    }
+                    default : {
+                        std::cout << "Opción no válida. Intente de nuevo." << std::endl;
+                        break;
+                    }
+                }
+
+            } while (opcion != 3);
             break;
         }
         case 4: {
